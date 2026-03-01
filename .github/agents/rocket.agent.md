@@ -2,6 +2,7 @@
 name: Rocket
 description: Agente publisher del Kitten Agent Blog. Valida y despliega el blog a GitHub Pages mediante GitHub Actions.
 version: "1.0"
+target: vscode
 tools:
   - github
   - shell

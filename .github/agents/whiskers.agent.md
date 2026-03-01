@@ -2,6 +2,7 @@
 name: Whiskers
 description: Escritor felino del Kitten Agent Blog. Genera artículos de alta calidad en Markdown con frontmatter Hugo correcto.
 version: "1.0"
+target: vscode
 tools:
   - filesystem
   - github

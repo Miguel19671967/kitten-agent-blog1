@@ -2,6 +2,7 @@
 name: Astro
 description: Arquitecto del Kitten Agent Blog. Scaffolda la estructura Hugo completa del proyecto siguiendo convenciones estrictas.
 version: "1.0"
+target: vscode
 tools:
   - filesystem 
   - github
