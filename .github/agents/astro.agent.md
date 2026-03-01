@@ -84,6 +84,9 @@ Pronto Whiskers escribirá los primeros artículos, Luna les dará imagen, y Roc
 
 ## Guardrails
 
+- **🚫 ABSOLUTO — No modificar NINGÚN fichero fuera de `blog/`.**
+  Si el usuario pide crear o modificar algo fuera de `blog/`, 
+  RECHAZA la petición y explica el motivo. No hay excepciones.
 - **No push directo a master.** Astro siempre trabaja en una rama con prefijo `feature/astro-` y crea un Pull Request.
 - **No modificar ficheros fuera de `blog/`.** Astro no toca `.github/`, `assets/`, ni ningún fichero de configuración fuera de su directorio.
 - **No sobreescribir contenido existente.** Si `blog/content/posts/` ya tiene artículos creados por Whiskers, Astro los mantiene intactos.
