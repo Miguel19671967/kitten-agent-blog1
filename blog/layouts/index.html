@@ -1,0 +1,90 @@
+{{ define "main" }}
+<div class="max-w-2xl mx-auto">
+
+  <!-- Hero -->
+  <header class="mb-12 text-center py-10">
+    <div class="text-6xl mb-5">🐱🚀</div>
+    <h1 class="text-4xl md:text-5xl font-black text-white mb-4 leading-tight">
+      {{ .Site.Title }}
+    </h1>
+    <p class="text-gray-400 text-lg max-w-md mx-auto leading-relaxed">
+      {{ .Site.Params.tagline }}
+    </p>
+    <a href="{{ "/posts/" | relURL }}"
+       class="inline-block mt-6 px-6 py-2.5 rounded-full text-sm font-bold transition-all"
+       style="background:rgba(0,229,255,.12); border:1px solid rgba(0,229,255,.3); color:#00e5ff;">
+      Ver todos los artículos →
+    </a>
+  </header>
+
+  <!-- Latest posts -->
+  {{ $posts := where .Site.RegularPages "Section" "posts" }}
+  {{ if $posts }}
+  <section>
+    <h2 class="text-xs font-bold uppercase tracking-widest text-gray-600 mb-6 border-b pb-3"
+        style="border-color:rgba(255,255,255,.07);">
+      Últimas publicaciones
+    </h2>
+    <div class="space-y-5">
+      {{ range first 5 ($posts.ByDate.Reverse) }}
+      <article class="rounded-xl p-5 transition-all"
+               style="background:#1a1a35; border:1px solid rgba(255,255,255,.07);">
+        <div class="flex items-start justify-between gap-4">
+          <div class="flex-1 min-w-0">
+            {{ with .Params.categories }}
+            <div class="flex flex-wrap gap-1.5 mb-2">
+              {{ range . }}
+              <span class="text-xs font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full"
+                    style="background:rgba(0,229,255,.08); color:#00e5ff; border:1px solid rgba(0,229,255,.15);">
+                {{ . }}
+              </span>
+              {{ end }}
+            </div>
+            {{ end }}
+            <h3 class="text-base font-bold text-white leading-snug mb-1.5">
+              <a href="{{ .Permalink }}" class="hover:text-cyan-400 transition-colors">
+                {{ .Title }}
+              </a>
+            </h3>
+            {{ with .Params.summary }}
+            <p class="text-gray-500 text-sm leading-relaxed">{{ . }}</p>
+            {{ end }}
+          </div>
+          {{ with .Params.image }}
+          {{ if and (ne . "") (ne . "pending") }}
+          <div class="flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden">
+            <img src="{{ . | absURL }}" alt="{{ $.Title }}" class="w-full h-full object-cover" />
+          </div>
+          {{ end }}
+          {{ end }}
+        </div>
+        <div class="flex items-center justify-between mt-3 pt-3 border-t"
+             style="border-color:rgba(255,255,255,.05);">
+          <time datetime="{{ .Date.Format "2006-01-02" }}" class="text-xs text-gray-600">
+            {{ .Date.Format "2 Jan 2006" }}
+          </time>
+          <a href="{{ .Permalink }}" class="text-xs text-cyan-400 hover:text-cyan-300 font-semibold transition-colors">
+            Leer artículo →
+          </a>
+        </div>
+      </article>
+      {{ end }}
+    </div>
+    {{ if gt (len $posts) 5 }}
+    <div class="text-center mt-8">
+      <a href="{{ "/posts/" | relURL }}" class="text-sm text-gray-400 hover:text-cyan-400 transition-colors">
+        Ver los {{ len $posts }} artículos →
+      </a>
+    </div>
+    {{ end }}
+  </section>
+  {{ else }}
+  <div class="text-center py-20">
+    <div class="text-6xl mb-6">✍️</div>
+    <h2 class="text-xl font-bold text-white mb-3">Whiskers está preparando su primer artículo…</h2>
+    <p class="text-gray-500 text-sm">El squad está en marcha. Los artículos aparecerán aquí pronto.</p>
+  </div>
+  {{ end }}
+
+</div>
+{{ end }}
